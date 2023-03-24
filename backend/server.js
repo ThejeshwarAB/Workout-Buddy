@@ -2,7 +2,6 @@ const express = require('express')
 require('dotenv').config()
 
 const mongoose = require('mongoose')
-const workoutModel = require('./models/workoutModel')
 
 const workoutRoutes = require('./routes/workoutRoutes')
 
@@ -14,8 +13,8 @@ mongoose.connect(process.env.MONGO_URI)
         app.listen(process.env.PORT, () =>
             console.log('connected to db & server is listening to port:', process.env.PORT))
     })
+    
 //middleware
-
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.method, req.path)
@@ -23,10 +22,3 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/workouts',workoutRoutes)
-
-// app.post('/', (req, res) => {
-//     const { title, load, reps } = req.body
-//     workoutModel.create({ title, load, reps })
-//     res.json({ message: 'adding data' })
-// })
-
