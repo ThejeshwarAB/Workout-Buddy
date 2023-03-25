@@ -5,10 +5,10 @@ const Workout = require('../models/workoutModel')
 const getWorkouts = async (req, res) => {
     try {
         const allWorkouts = await Workout.find({}).sort({ createdAt: -1 })
-        res.status(200).json({ allWorkouts })
+        res.status(200).json(allWorkouts)
     }
     catch (error) {
-        res.status(400).json({ err: error.message })
+        res.status(400).json({ error: error.message })
     }
     // res.json({ "message": "getting workouts" })
 }
@@ -26,10 +26,10 @@ const getWorkout = async (req, res) => {
         if (!workout) {
             return res.status(404).json({ error: 'no such workout' })
         }
-        res.status(200).json({ workout })
+        res.status(200).json(workout)
     }
     catch (error) {
-        res.status(400).json({ err: error.message })
+        res.status(400).json({ error: error.message })
     }
     // res.json({ "message": "getting workout" + ' ' + req.params.id })
 }
@@ -38,10 +38,10 @@ const createWorkout = async (req, res) => {
     const { title, reps, load } = req.body
     try {
         const workoutAdded = await Workout.create({ title, reps, load })
-        res.status(200).json({ workoutAdded })
+        res.status(200).json(workoutAdded)
     }
     catch (error) {
-        res.status(400).json({ err: error.message })
+        res.status(400).json({ error: error.message })
     }
     // res.json({ "message": "adding workout" })
 }
@@ -56,10 +56,10 @@ const deleteWorkout = async (req, res) => {
 
     try {
         const deletedWorkout = await Workout.deleteOne({ _id: id })
-        res.status(200).json({ deletedWorkout })
+        res.status(200).json(deletedWorkout)
     }
     catch (error) {
-        res.status(400).json({ err: error.message })
+        res.status(400).json({ error: error.message })
     }
     // res.json({ "message": "deleting workout" })
 }
@@ -78,7 +78,7 @@ const updateWorkout = async (req, res) => {
         res.status(200).json({ updatedWorkout })
     }
     catch (error) {
-        res.status(400).json({ err: error.message })
+        res.status(400).json({ error: error.message })
     }
     // res.json({ "message": "updating workout" })
 }
