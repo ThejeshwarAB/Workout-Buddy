@@ -15,6 +15,10 @@ const workoutReducer = (state, action) => {
             //gets all the workouts in action payload
             return { workouts: action.payload }
 
+        case 'DELETE_WORKOUT':
+            //deletes a specific workout
+            return { workouts: state.workouts.filter(workout => workout._id !== action.payload._id) }
+
         default:
             //called for all the other default cases
             return state

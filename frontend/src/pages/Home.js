@@ -20,7 +20,7 @@ const Home = () => {
             if (response.ok) {
                 // setWorkouts(data)
                 dispatch({ type: "GET_WORKOUTS", payload: data })
-                console.log('this is the data', data)
+                console.log('data', data)
             }
         }
         getWorkouts()

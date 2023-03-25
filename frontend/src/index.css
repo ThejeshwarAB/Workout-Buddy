@@ -61,6 +61,7 @@ header a {
 /* workout details styling */
 
 .workout-details{
+  position: relative;
   background-color: white;
   padding: 20px;
   margin: 20px auto;
@@ -122,7 +123,7 @@ header a {
   transform: scale(1.025);
 }
 
-.error{
+div.error{
  padding: 10px;
  font-size: smaller;
  background-color: pink;
@@ -130,4 +131,20 @@ header a {
  border-radius: 10px;
  color: var(--error);
  width: 75%;
+}
+
+input.error{
+ /* background-color: pink; */
+ border: 1px solid var(--error);
+}
+
+.workout-details i{
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 10px;
 }

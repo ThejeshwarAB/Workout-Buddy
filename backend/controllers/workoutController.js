@@ -18,13 +18,13 @@ const getWorkout = async (req, res) => {
 
     //check if mongo db id is valid or not
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'no such workout' })
+        return res.status(404).json({ error: 'No such workout' })
     }
 
     try {
         const workout = await Workout.find({ _id: id })
         if (!workout) {
-            return res.status(404).json({ error: 'no such workout' })
+            return res.status(404).json({ error: 'No such workout' })
         }
         res.status(200).json(workout)
     }
@@ -36,6 +36,23 @@ const getWorkout = async (req, res) => {
 
 const createWorkout = async (req, res) => {
     const { title, reps, load } = req.body
+
+    let emptyFields = []
+
+    if (!title) {
+        emptyFields.push('title')
+    }
+    if (!reps) {
+        emptyFields.push('reps')
+    }
+    if (!load) {
+        emptyFields.push('load')
+    }
+
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill all the fields', emptyFields })
+    }
+
     try {
         const workoutAdded = await Workout.create({ title, reps, load })
         res.status(200).json(workoutAdded)
@@ -55,7 +72,7 @@ const deleteWorkout = async (req, res) => {
     }
 
     try {
-        const deletedWorkout = await Workout.deleteOne({ _id: id })
+        const deletedWorkout = await Workout.findOneAndDelete({ _id: id })
         res.status(200).json(deletedWorkout)
     }
     catch (error) {
@@ -74,7 +91,7 @@ const updateWorkout = async (req, res) => {
     }
 
     try {
-        const updatedWorkout = await Workout.updateOne({ _id: id }, { title, reps, load })
+        const updatedWorkout = await Workout.findOneAndUpdate({ _id: id }, { title, reps, load })
         res.status(200).json({ updatedWorkout })
     }
     catch (error) {
