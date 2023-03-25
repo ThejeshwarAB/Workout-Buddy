@@ -34,7 +34,7 @@ header {
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -124,7 +124,7 @@ header a {
 
 .error{
  padding: 10px;
- /* margin: 0px 20px; */
+ font-size: smaller;
  background-color: pink;
  border: 1px solid var(--error);
  border-radius: 10px;
