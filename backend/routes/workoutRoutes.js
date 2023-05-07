@@ -1,7 +1,7 @@
 const express = require('express')
 const { default: mongoose } = require('mongoose')
 
-const Workout = require('../models/workoutModel')
+// const Workout = require('../models/workoutModel')
 
 const {
     getWorkouts,
